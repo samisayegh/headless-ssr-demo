@@ -1,5 +1,5 @@
 const path = require('path');
-const {babelRule} = require('./config/rules');
+const {tsRule} = require('./config/rules');
 
 function cssRule() {
   return {
@@ -11,15 +11,18 @@ function cssRule() {
 module.exports = {
   target: 'node',
   mode: 'development',
-  entry: './src/server.js',
+  entry: './src/server.tsx',
   output: {
     filename: 'server.js',
     path: path.resolve(__dirname, 'dist'),
   },
   module: {
     rules: [
-      babelRule(),
+      tsRule(),
       cssRule(),
     ]
+  },
+  resolve: {
+    extensions: ['.tsx', '.js', '.css'],
   },
 };

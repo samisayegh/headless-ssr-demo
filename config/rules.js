@@ -1,16 +1,9 @@
-function babelRule() {
+function tsRule() {
   return {
-    test: /\.js$/,
+    test: /\.tsx?$/,
+    use: 'ts-loader',
     exclude: /node_modules/,
-    use:{
-      loader: 'babel-loader',
-      options: {
-        presets: [
-          ['@babel/preset-react']
-        ]
-      }
-    },
   }
 }
 
-module.exports = {babelRule}
+module.exports = {tsRule}

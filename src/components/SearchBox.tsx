@@ -1,16 +1,17 @@
-import React, {useEffect, useState, useContext} from 'react';
+import * as React from 'react';
 import TextField from '@material-ui/core/TextField';
 import Autocomplete from '@material-ui/lab/Autocomplete';
 import {
   buildSearchBox,
+  SearchBox as HeadlessSearchBox
 } from '@coveo/headless';
 import {EngineContext} from '../context/engine';
 
-export const SearchBoxRenderer = (props) => {
+export const SearchBoxRenderer = (props: {controller: HeadlessSearchBox}) => {
   const {controller} = props;
-  const [state, setState] = useState(controller.state);
+  const [state, setState] = React.useState(controller.state);
 
-  useEffect(
+  React.useEffect(
     () => controller.subscribe(() => setState(controller.state)),
     [controller]
   );
@@ -41,7 +42,7 @@ export const SearchBoxRenderer = (props) => {
 
 export const SearchBox = () => {
   const options = {numberOfSuggestions: 8};
-  const engine = useContext(EngineContext);
+  const engine = React.useContext(EngineContext);
   const controller = buildSearchBox(engine, {options});
   return <SearchBoxRenderer controller={controller} />;
 };

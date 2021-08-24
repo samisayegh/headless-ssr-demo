@@ -1,7 +1,7 @@
 const path = require('path');
 const MiniCssExtractPlugin = require('mini-css-extract-plugin');
 const HtmlWebpackPlugin = require('html-webpack-plugin');
-const {babelRule} = require('./config/rules');
+const {tsRule} = require('./config/rules');
 
 function cssRule() {
   return {
@@ -12,16 +12,19 @@ function cssRule() {
 
 module.exports = {
   mode: 'development',
-  entry: './src/index.js',
+  entry: './src/index.tsx',
   output: {
     filename: 'main.js',
     path: path.resolve(__dirname, 'dist/static'),
   },
   module: {
     rules: [
-      babelRule(),
+      tsRule(),
       cssRule(),
     ]
+  },
+  resolve: {
+    extensions: ['.tsx', '.js', '.css'],
   },
   plugins: [
     new MiniCssExtractPlugin(),

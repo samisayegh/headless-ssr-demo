@@ -1,16 +1,16 @@
-import path from 'path';
-import fs from 'fs';
+import * as path from 'path';
+import * as fs from 'fs';
 
-import express from 'express';
-import escape from 'escape-html';
-import React from 'react';
-import ReactDOMServer from 'react-dom/server';
+import * as express from 'express';
+import * as React from 'react';
+import * as ReactDOMServer from 'react-dom/server';
 
 import {App} from './App';
 import {
   buildSearchEngine,
   getSampleSearchEngineConfiguration,
   buildSearchStatus,
+  SearchEngine,
 } from '@coveo/headless';
 
 const PORT = 3000;
@@ -32,7 +32,7 @@ app.get('/', async (req, res) => {
       return res.status(500).send('Internal error');
     }
 
-    const state = escape(JSON.stringify(engine.state));
+    const state = JSON.stringify(engine.state);
     const page = data
       .replace('<div id="root"></div>', `<div id="root">${app}</div>`)
       .replace(
@@ -44,11 +44,11 @@ app.get('/', async (req, res) => {
   });
 });
 
-function renderServerSide(engine) {
-  return ReactDOMServer.renderToString(<App engine={engine} />);
+function renderServerSide(engine: SearchEngine) {
+  return ReactDOMServer.renderToString(<App/>);
 }
 
-function firstSearchExecuted(engine) {
+function firstSearchExecuted(engine: SearchEngine) {
   return new Promise((resolve) => {
     const searchStatus = buildSearchStatus(engine);
     searchStatus.subscribe(

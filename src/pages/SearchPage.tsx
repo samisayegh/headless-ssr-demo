@@ -1,4 +1,4 @@
-import React from 'react';
+import * as React from 'react';
 import { buildSearchEngine, getSampleSearchEngineConfiguration } from "@coveo/headless"
 import {SearchBox} from '../components/SearchBox';
 import {EngineContext} from '../context/engine';

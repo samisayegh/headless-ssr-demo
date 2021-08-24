@@ -25,7 +25,7 @@ app.get('/', async (req, res) => {
   await firstSearchExecuted(engine);
   const app = renderServerSide(engine);
 
-  const indexFile = path.resolve('./dist/index.html');
+  const indexFile = path.resolve('./dist/static/index.html');
   fs.readFile(indexFile, 'utf8', (err, data) => {
     if (err) {
       console.error('Something went wrong:', err);
@@ -58,7 +58,7 @@ function firstSearchExecuted(engine) {
   });
 }
 
-app.use(express.static('./build'));
+app.use(express.static('./dist/static'));
 
 app.listen(PORT, () => {
   console.log(`Server is listening on port ${PORT}`);

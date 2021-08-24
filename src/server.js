@@ -1,10 +1,11 @@
-const path = require('path');
-const fs = require('fs');
+import path from 'path';
+import fs from 'fs';
 
-const express = require('express');
-const escape = require('escape-html');
-const ReactDOMServer = require('react-dom/server');
+import express from 'express';
+import escape from 'escape-html';
+import ReactDOMServer from 'react-dom/server';
 
+import App from './App';
 import {
   buildSearchEngine,
   getSampleSearchEngineConfiguration,
@@ -43,7 +44,7 @@ app.get('/', async (req, res) => {
 });
 
 function renderServerSide(engine) {
-  return ReactDOMServer.renderToString('');
+  return ReactDOMServer.renderToString(<App engine={engine} />);
 }
 
 function firstSearchExecuted(engine) {

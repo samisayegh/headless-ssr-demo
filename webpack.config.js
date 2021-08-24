@@ -1,6 +1,14 @@
 const path = require('path');
+const MiniCssExtractPlugin = require('mini-css-extract-plugin');
 const HtmlWebpackPlugin = require('html-webpack-plugin');
-const {babelLoader} = require('./config/loaders');
+const {babelRule} = require('./config/rules');
+
+function cssRule() {
+  return {
+    test: /\.css$/i,
+    use: [MiniCssExtractPlugin.loader, 'css-loader'],
+  }
+}
 
 module.exports = {
   mode: 'development',
@@ -11,10 +19,12 @@ module.exports = {
   },
   module: {
     rules: [
-      babelLoader()
+      babelRule(),
+      cssRule(),
     ]
   },
   plugins: [
+    new MiniCssExtractPlugin(),
     new HtmlWebpackPlugin({title: 'Output management', template: 'src/index.html'})
   ]
 };

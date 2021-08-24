@@ -1,4 +1,4 @@
-function babelLoader() {
+function babelRule() {
   return {
     test: /\.js$/,
     exclude: /node_modules/,
@@ -13,4 +13,4 @@ function babelLoader() {
   }
 }
 
-module.exports = {babelLoader}
+module.exports = {babelRule}

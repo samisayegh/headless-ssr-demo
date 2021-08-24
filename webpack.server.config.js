@@ -1,5 +1,12 @@
 const path = require('path');
-const {babelLoader} = require('./config/loaders');
+const {babelRule} = require('./config/rules');
+
+function cssRule() {
+  return {
+    test: /\.css$/i,
+    use: ['css-loader'],
+  }
+}
 
 module.exports = {
   target: 'node',
@@ -11,7 +18,8 @@ module.exports = {
   },
   module: {
     rules: [
-      babelLoader()
+      babelRule(),
+      cssRule(),
     ]
   },
 };

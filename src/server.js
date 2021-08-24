@@ -3,9 +3,10 @@ import fs from 'fs';
 
 import express from 'express';
 import escape from 'escape-html';
+import React from 'react';
 import ReactDOMServer from 'react-dom/server';
 
-import App from './App';
+import {App} from './App';
 import {
   buildSearchEngine,
   getSampleSearchEngineConfiguration,
@@ -24,7 +25,7 @@ app.get('/', async (req, res) => {
   await firstSearchExecuted(engine);
   const app = renderServerSide(engine);
 
-  const indexFile = path.resolve('./build/index.html');
+  const indexFile = path.resolve('./dist/index.html');
   fs.readFile(indexFile, 'utf8', (err, data) => {
     if (err) {
       console.error('Something went wrong:', err);

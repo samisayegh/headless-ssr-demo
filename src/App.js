@@ -1,6 +1,7 @@
 import React from 'react';
 import './App.css';
+import {SearchPage} from './pages/SearchPage';
 
 export function App() {
-  return <div className="red-text">Hello World</div>
+  return <SearchPage/>
 }

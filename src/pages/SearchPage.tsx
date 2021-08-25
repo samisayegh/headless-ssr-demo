@@ -2,6 +2,8 @@ import * as React from "react";
 import {
   buildSearchEngine,
   getSampleSearchEngineConfiguration,
+  SearchAppState,
+  SearchEngine,
 } from "@coveo/headless";
 import { SearchBox } from "../components/SearchBox";
 import { EngineContext } from "../context/engine";
@@ -9,12 +11,24 @@ import { ResultList } from "../components/ResultList";
 import { Box, Container, Grid, Typography } from "@material-ui/core";
 import { Facet } from "../components/Facet";
 
-export function SearchPage() {
-  const engine = buildSearchEngine({
-    configuration: getSampleSearchEngineConfiguration(),
-  });
+declare global {
+  interface Window {
+    HEADLESS_STATE?: SearchAppState;
+  }
+}
+
+export interface SearchPageProps {
+  engine?: SearchEngine;
+}
+
+export function SearchPage(props: SearchPageProps) {
+  const engine = props.engine || buildEngine();
 
   React.useEffect(() => {
+    if (props.engine) {
+      return;
+    }
+
     engine.executeFirstSearch();
   }, [engine]);
 
@@ -50,4 +64,11 @@ export function SearchPage() {
       </EngineContext.Provider>
     </div>
   );
+}
+
+function buildEngine() {
+  return buildSearchEngine({
+    configuration: getSampleSearchEngineConfiguration(),
+    preloadedState: window.HEADLESS_STATE,
+  });
 }

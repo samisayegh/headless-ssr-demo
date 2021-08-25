@@ -48,7 +48,7 @@ app.get('/', async (req, res) => {
 
 function renderServerSide(engine: SearchEngine) {
   const sheets = new ServerStyleSheets();
-  const html = ReactDOMServer.renderToString(sheets.collect(<App/>));
+  const html = ReactDOMServer.renderToString(sheets.collect(<App engine={engine}/>));
   const css = sheets.toString();
 
   return {html, css};

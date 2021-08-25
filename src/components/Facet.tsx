@@ -95,6 +95,7 @@ export const Facet: React.FunctionComponent<FacetProps> = (props) => {
     options: {
       numberOfValues: 5,
       field: props.field,
+      facetId: props.field,
     },
   });
   return <FacetRenderer {...props} controller={controller} />;

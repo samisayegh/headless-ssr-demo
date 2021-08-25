@@ -1,8 +1,8 @@
 import * as React from 'react';
 import './App.css';
-import {SearchPage} from './pages/SearchPage';
+import {SearchPage, SearchPageProps} from './pages/SearchPage';
 
-export function App() {
+export function App(props: SearchPageProps) {
   React.useEffect(() => {
     const ssrStyles = document.querySelector('#ssr-styles');
 
@@ -10,6 +10,6 @@ export function App() {
       ssrStyles.parentElement.removeChild(ssrStyles);
     }
   }, [])
-  
-  return <SearchPage/>;
+
+  return <SearchPage {...props} />;
 }

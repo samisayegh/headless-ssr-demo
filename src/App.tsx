@@ -2,7 +2,8 @@ import * as React from "react";
 import "./App.css";
 import { SearchPage, SearchPageProps } from "./pages/SearchPage";
 import { NavLink, Switch, Route } from "react-router-dom";
-import {Tab} from '@material-ui/core'
+import { Tab, Grid } from "@material-ui/core";
+
 export function App(props: SearchPageProps) {
   React.useEffect(() => {
     const ssrStyles = document.querySelector("#ssr-styles");
@@ -15,12 +16,14 @@ export function App(props: SearchPageProps) {
 
   return (
     <>
-      <NavLink exact to="/" activeStyle={activeNavLink}>
-        <Tab label="CSR"/>
-      </NavLink>
-      <NavLink exact to="/ssr" activeStyle={activeNavLink}>
-        <Tab label="SSR"/>
-      </NavLink>
+      <Grid container justifyContent="center">
+        <NavLink exact to="/" activeStyle={activeNavLink}>
+          <Tab label="CSR" />
+        </NavLink>
+        <NavLink exact to="/ssr" activeStyle={activeNavLink}>
+          <Tab label="SSR" />
+        </NavLink>
+      </Grid>
       <Switch>
         <Route path="/">
           <SearchPage {...props} />

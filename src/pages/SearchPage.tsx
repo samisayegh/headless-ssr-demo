@@ -2,6 +2,7 @@ import * as React from "react";
 import {
   buildSearchEngine,
   getSampleSearchEngineConfiguration,
+  loadSearchAnalyticsActions,
   SearchAppState,
   SearchEngine,
 } from "@coveo/headless";
@@ -26,6 +27,14 @@ export function SearchPage(props: SearchPageProps) {
 
   React.useEffect(() => {
     if (props.engine) {
+      return;
+    }
+
+    const wasServerSideRendered = !!window.HEADLESS_STATE;
+        
+    if (wasServerSideRendered) {
+      const {logInterfaceLoad} = loadSearchAnalyticsActions(engine);
+      engine.dispatch(logInterfaceLoad());
       return;
     }
 

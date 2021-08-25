@@ -45,14 +45,17 @@ export function SearchPage(props: SearchPageProps) {
     <div>
       <EngineContext.Provider value={engine}>
         <Container maxWidth="lg">
-          <Grid container justifyContent="center">
-            <Grid item md={8}>
-              <SearchBox />
+          <Grid container>
+            <Grid item sm={3}/>
+            <Grid item sm={7}>
+              <Box pl={3}>
+                <SearchBox />
+              </Box>
             </Grid>
           </Grid>
           <Box my={4}>
             <Grid container>
-              <Grid item md={3} sm={12}>
+              <Grid item sm={3}>
                 <Box>
                   <Box px={1} pb={1}>
                     <Typography variant="overline">Refine By</Typography>
@@ -62,7 +65,7 @@ export function SearchPage(props: SearchPageProps) {
                   </Box>
                 </Box>
               </Grid>
-              <Grid item md={9} sm={12}>
+              <Grid item sm={9}>
                 <Box pl={3}>
                   <ResultList />
                 </Box>

@@ -17,6 +17,9 @@ module.exports = {
     filename: 'main.js',
     path: path.resolve(__dirname, 'dist/static'),
   },
+  devServer: {
+    static: './dist/static',
+  },
   module: {
     rules: [
       tsRule(),

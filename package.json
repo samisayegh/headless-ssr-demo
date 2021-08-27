@@ -6,10 +6,12 @@
   "scripts": {
     "start": "webpack serve --open",
     "test": "echo \"Error: no test specified\" && exit 1",
-    "build": "webpack --config webpack.config.js",
+    "build": "npm run build:csr && npm run build:ssr && npm run copy:assets",
+    "build:csr": "webpack --config webpack.config.js",
     "build:ssr": "webpack --config webpack.server.config.js",
+    "copy:assets": "cp -a public/. dist/static/",
     "start:ssr:server": "node ./dist/server.js",
-    "ssr": "npm run build && npm run build:ssr && npm run start:ssr:server"
+    "ssr": "npm run build && npm run start:ssr:server"
   },
   "author": "",
   "license": "ISC",

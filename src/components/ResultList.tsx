@@ -60,6 +60,10 @@ const ResultListRenderer: React.FunctionComponent<ResultListProps> = (props) => 
     content: (result: Result) => (
       <ListItem disableGutters key={result.uniqueId}>
         <Box my={2}>
+          <img src={result.raw.picture as string} width={160}></img>
+        </Box>
+        <Box width={64}></Box>
+        <Box my={2}>
           <Box pb={1}>
             <ListItemLink
               disableGutters
@@ -104,6 +108,6 @@ const ResultListRenderer: React.FunctionComponent<ResultListProps> = (props) => 
 
 export const ResultList = () => {
   const engine = React.useContext(EngineContext)!;
-  const controller = buildResultList(engine);
+  const controller = buildResultList(engine, {options: {fieldsToInclude: ['picture']}});
   return <ResultListRenderer controller={controller} />;
 };

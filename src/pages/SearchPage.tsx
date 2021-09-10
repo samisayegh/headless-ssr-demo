@@ -1,7 +1,6 @@
 import * as React from "react";
 import {
   buildSearchEngine,
-  getSampleSearchEngineConfiguration,
   loadSearchAnalyticsActions,
   SearchAppState,
   SearchEngine,
@@ -11,6 +10,7 @@ import { EngineContext } from "../context/engine";
 import { ResultList } from "../components/ResultList";
 import { Box, Container, Grid, Typography } from "@material-ui/core";
 import { Facet } from "../components/Facet";
+import { configuration } from "../engine-configuration";
 
 declare global {
   interface Window {
@@ -59,9 +59,9 @@ export function SearchPage(props: SearchPageProps) {
                 <Box>
                   <Box px={1} pb={1}>
                     <Typography variant="overline">Refine By</Typography>
-                    <Facet field="objecttype" title="Object Type" />
-                    <Facet field="filetype" title="File Type" />
-                    <Facet field="author" title="Author" />
+                    <Facet field="workteam" title="Team" />
+                    <Facet field="workdepartment" title="Department" />
+                    <Facet field="office" title="Office" />
                   </Box>
                 </Box>
               </Grid>
@@ -80,7 +80,7 @@ export function SearchPage(props: SearchPageProps) {
 
 function buildEngine() {
   return buildSearchEngine({
-    configuration: getSampleSearchEngineConfiguration(),
+    configuration,
     preloadedState: window.HEADLESS_STATE,
   });
 }

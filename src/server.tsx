@@ -9,11 +9,11 @@ import { ServerStyleSheets } from "@material-ui/core/styles";
 import { App } from "./App";
 import {
   buildSearchEngine,
-  getSampleSearchEngineConfiguration,
   buildSearchStatus,
   SearchEngine,
 } from "@coveo/headless";
 import { StaticRouter } from "react-router-dom";
+import { configuration } from "./engine-configuration";
 
 const PORT = 3000;
 const app = express();
@@ -24,9 +24,7 @@ app
     res.sendFile(indexFile);
   })
   .get("/ssr", async (req, res) => {
-    const engine = buildSearchEngine({
-      configuration: getSampleSearchEngineConfiguration(),
-    });
+    const engine = buildSearchEngine({configuration});
 
     renderServerSide(engine, req.url);
     await firstSearchExecuted(engine);

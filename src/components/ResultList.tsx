@@ -60,7 +60,7 @@ const ResultListRenderer: React.FunctionComponent<ResultListProps> = (props) => 
     content: (result: Result) => (
       <ListItem disableGutters key={result.uniqueId}>
         <Box my={2}>
-          <img src={result.raw.picture as string} width={160}></img>
+          <img src={result.raw.picture as string} width={160} style={{borderRadius: 8}}></img>
         </Box>
         <Box width={64}></Box>
         <Box my={2}>

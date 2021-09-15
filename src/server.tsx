@@ -19,12 +19,12 @@ const PORT = 3000;
 const app = express();
 
 app
-.get("/", async (_, res) => {
+  .get("/", async (_, res) => {
     const indexFile = path.resolve("./dist/static/index.html");
     res.sendFile(indexFile);
   })
   .get("/ssr", async (req, res) => {
-    const engine = buildSearchEngine({configuration});
+    const engine = buildSearchEngine({ configuration });
 
     renderServerSide(engine, req.url);
     await firstSearchExecuted(engine);

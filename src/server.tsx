@@ -29,16 +29,16 @@ app
     renderServerSide(engine, req.url);
     await firstSearchExecuted(engine);
     const { html, css } = renderServerSide(engine, req.url);
+    const state = JSON.stringify(engine.state);
 
     const indexFile = path.resolve("./dist/static/index.html");
-    fs.readFile(indexFile, "utf8", (err, data) => {
+    fs.readFile(indexFile, "utf8", (err, htmlFile) => {
       if (err) {
         console.error("Something went wrong:", err);
         return res.status(500).send("Internal error");
       }
 
-      const state = JSON.stringify(engine.state);
-      const page = data
+      const page = htmlFile
         .replace('<div id="root"></div>', `<div id="root">${html}</div>`)
         .replace(
           '<style id="ssr-styles"></style>',
